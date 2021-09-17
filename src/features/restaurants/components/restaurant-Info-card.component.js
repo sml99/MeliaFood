@@ -8,21 +8,21 @@ const RestaurantCard = styled(Card)`
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`
-    padding: 20px;
+    padding: 12px;
     background-color: white;
 `;
 
 const Title = styled(Text)`
-    padding: 16px;
+    padding: 12px;
     color: ${(props) => props.theme.colors.ui.primary};
 `;
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
     const {
-        name = "Some Restaurant",
+        name = "Eleven",
         icon,
         photos = [
-            "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+            "https://images.pexels.com/photos/1435907/pexels-photo-1435907.jpeg",
         ],
         address = "100 some random street",
         isOpenNow = true,
