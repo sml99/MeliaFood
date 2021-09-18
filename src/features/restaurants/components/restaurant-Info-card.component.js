@@ -8,12 +8,12 @@ const RestaurantCard = styled(Card)`
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`
-    padding: 12px;
+    padding: ${(props) => props.theme.space[2]};
     background-color: white;
 `;
 
 const Title = styled(Text)`
-    padding: 12px;
+    padding: ${(props) => props.theme.space[2]};
     color: ${(props) => props.theme.colors.ui.primary};
 `;
 
