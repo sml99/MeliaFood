@@ -1,9 +1,11 @@
 import React from "react";
+import { Text, Image } from "react-native";
 import styled from "styled-components/native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 const RestaurantCard = styled(Card)`
     background-color: ${(props) => props.theme.colors.bg.primary};
@@ -18,16 +20,19 @@ const Info = styled.View`
     padding: ${(props) => props.theme.space[2]};
 `;
 
-const Section = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-`;
-
 const Rating = styled.View`
     flex-direction: row;
-    padding: ${(props) => props.theme.space[2]} 0
-        ${(props) => props.theme.space[1]};
+    padding-top: ${(props) => props.theme.space[2]};
+    padding-bottom: ${(props) => props.theme.space[2]};
+`;
+const Section = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+const SectionEnd = styled.View`
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
 `;
 
 const Title = styled.Text`
@@ -45,18 +50,17 @@ const Address = styled.Text`
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
     const {
         name = "Eleven",
-        icon,
+        icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
         photos = [
             "https://images.pexels.com/photos/1435907/pexels-photo-1435907.jpeg",
         ],
         address = "100 some random street",
         isOpenNow = true,
         rating = 4.2,
-        isClosedTemporarily,
+        isClosedTemporarily = true,
     } = restaurant;
 
     const ratingArray = Array.from(new Array(Math.floor(rating)));
-    console.log(ratingArray);
     return (
         <RestaurantCard elevation={5}>
             <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
@@ -64,11 +68,28 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
                 <Title>{name}</Title>
                 <Section>
                     <Rating>
-                        {ratingArray.map(() => (
-                            <SvgXml xml={star} width={20} height={20} />
+                        {ratingArray.map((x, i) => (
+                            <SvgXml key={i} xml={star} width={20} height={20} />
                         ))}
                     </Rating>
-                    {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+                    <SectionEnd>
+                        {isClosedTemporarily && (
+                            <Text variant="label" style={{ color: "red" }}>
+                                CLOSED TEMPORARILY
+                            </Text>
+                        )}
+                        <Spacer>
+                            {isOpenNow && (
+                                <SvgXml xml={open} width={20} height={20} />
+                            )}
+                        </Spacer>
+                        <Spacer>
+                            <Image
+                                style={{ width: 15, height: 15 }}
+                                source={{ uri: icon }}
+                            />
+                        </Spacer>
+                    </SectionEnd>
                 </Section>
                 <Address>{address}</Address>
             </Info>
