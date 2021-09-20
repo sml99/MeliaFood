@@ -15,8 +15,10 @@ import { theme } from "./src/infrastructure/theme";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
 import { Text } from "./src/components/typography/text.component";
 import { SafeArea } from "./src/components/utility/safe-area.component";
+import { restaurantRequest } from "./src/services/restaurants/restaurants.service";
 
 export default function App() {
+    restaurantRequest();
     const [oswaldLoaded] = useOswald({
         Oswald_400Regular,
     });
