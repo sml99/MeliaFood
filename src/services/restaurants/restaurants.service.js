@@ -17,7 +17,6 @@ export const restaurantTransform = ({ results }) => {
         restaurant.photos = [
             mockImages[Math.floor(Math.random() * mockImages.length)],
         ];
-        console.log(restaurant.photos);
         return {
             ...restaurant,
             address: restaurant.place_id,
