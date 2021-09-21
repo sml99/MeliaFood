@@ -19,7 +19,7 @@ const RestaurantsList = styled(FlatList).attrs({
 })``;
 
 export const RestaurantsScreen = () => {
-    const restaurantContext = useContext(RestaurantContext);
+    const { restaurants, isLoading, error } = useContext(RestaurantContext);
     return (
         <SafeArea>
             <SearchContainer>
@@ -27,12 +27,14 @@ export const RestaurantsScreen = () => {
             </SearchContainer>
 
             <RestaurantsList
-                data={restaurantContext.restaurants}
-                renderItem={() => (
-                    <Spacer direction="bottom" size="large">
-                        <RestaurantInfoCard />
-                    </Spacer>
-                )}
+                data={restaurants}
+                renderItem={({ item }) => {
+                    return (
+                        <Spacer direction="bottom" size="large">
+                            <RestaurantInfoCard restaurant={item} />
+                        </Spacer>
+                    );
+                }}
                 keyExtractor={(item) =>
                     /*item.name.toString()*/ Math.random() + ""
                 }
