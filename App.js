@@ -15,10 +15,9 @@ import { theme } from "./src/infrastructure/theme";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
 import { Text } from "./src/components/typography/text.component";
 import { SafeArea } from "./src/components/utility/safe-area.component";
-import { restaurantRequest } from "./src/services/restaurants/restaurants.service";
+import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
 
 export default function App() {
-    restaurantRequest();
     const [oswaldLoaded] = useOswald({
         Oswald_400Regular,
     });
@@ -88,26 +87,28 @@ export default function App() {
     return (
         <>
             <ThemeProvider theme={theme}>
-                <NavigationContainer>
-                    <Tab.Navigator screenOptions={screenOptions}>
-                        <Tab.Screen
-                            name="Restaurants"
-                            component={HomeScreen}
-                            options={{ headerShown: false }}
-                        />
-                        <Tab.Screen
-                            name="Map"
-                            component={MapScreen}
-                            options={{ headerShown: false }}
-                        />
-                        <Tab.Screen
-                            name="Settings"
-                            component={SettingsScreen}
-                            options={{ headerShown: false }}
-                        />
-                    </Tab.Navigator>
-                </NavigationContainer>
-                <Spacing />
+                <RestaurantContextProvider>
+                    <NavigationContainer>
+                        <Tab.Navigator screenOptions={screenOptions}>
+                            <Tab.Screen
+                                name="Restaurants"
+                                component={HomeScreen}
+                                options={{ headerShown: false }}
+                            />
+                            <Tab.Screen
+                                name="Map"
+                                component={MapScreen}
+                                options={{ headerShown: false }}
+                            />
+                            <Tab.Screen
+                                name="Settings"
+                                component={SettingsScreen}
+                                options={{ headerShown: false }}
+                            />
+                        </Tab.Navigator>
+                    </NavigationContainer>
+                    <Spacing />
+                </RestaurantContextProvider>
             </ThemeProvider>
             <ExpoStatusBar style="auto" />
         </>
