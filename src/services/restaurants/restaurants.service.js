@@ -26,6 +26,7 @@ export const restaurantTransform = ({ results }) => {
                 (restaurant.opening_hours &&
                     restaurant.opening_hours.open_now) ??
                 false,
+            placeId: restaurant.place_id,
         };
     });
     return camelize(mappedResults);

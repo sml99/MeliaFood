@@ -22,7 +22,9 @@ export const RestaurantContextProvider = ({ children }) => {
                 .then((results) => {
                     setRestaurants(results);
                 })
-                .catch((err) => setError(err))
+                .catch((err) => {
+                    setError(err);
+                })
                 .finally(() => {
                     setIsLoading(false);
                 });
@@ -34,7 +36,9 @@ export const RestaurantContextProvider = ({ children }) => {
             const formattedLocation = location.lat + "," + location.lng;
 
             retrieveRestauranats(formattedLocation);
-        } else retrieveRestauranats();
+        } else {
+            retrieveRestauranats();
+        }
     }, [location]);
 
     return (
