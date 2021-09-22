@@ -10,9 +10,7 @@ const RestaurantsStack = createStackNavigator();
 
 export const RestaurantsNavigator = () => {
     return (
-        <RestaurantsStack.Navigator
-            screenOptions={{ ...TransitionPresets.ModalPresentationIOS }}
-        >
+        <RestaurantsStack.Navigator screenOptions={{ presentation: "modal" }}>
             <RestaurantsStack.Screen
                 name="RestaurantsList"
                 component={RestaurantsScreen}
