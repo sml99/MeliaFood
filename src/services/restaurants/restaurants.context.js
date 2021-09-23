@@ -4,7 +4,7 @@ import { useContext } from "react/cjs/react.development";
 import { LocationContext } from "../location/location.context";
 import { restaurantRequest, restaurantTransform } from "./restaurants.service";
 
-export const RestaurantContext = createContext();
+export const RestaurantsContext = createContext();
 
 export const RestaurantContextProvider = ({ children }) => {
     const { location } = useContext(LocationContext);
@@ -42,7 +42,7 @@ export const RestaurantContextProvider = ({ children }) => {
     }, [location]);
 
     return (
-        <RestaurantContext.Provider
+        <RestaurantsContext.Provider
             value={{
                 restaurants,
                 isLoading,
@@ -50,6 +50,6 @@ export const RestaurantContextProvider = ({ children }) => {
             }}
         >
             {children}
-        </RestaurantContext.Provider>
+        </RestaurantsContext.Provider>
     );
 };
