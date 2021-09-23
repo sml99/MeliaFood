@@ -6,12 +6,9 @@ import styled from "styled-components";
 
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { RestaurantsNavigator } from "./restaurants.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 export const AppNavigator = () => {
-    function RestaurantsScreen() {
-        return <RestaurantsNavigator />;
-    }
-
     const SettingScreen = styled.View`
         flex: 1;
         justify-content: center;
@@ -19,14 +16,6 @@ export const AppNavigator = () => {
     `;
 
     function SettingsScreen() {
-        return (
-            <SafeArea>
-                <SettingScreen />
-            </SafeArea>
-        );
-    }
-
-    function MapScreen() {
         return (
             <SafeArea>
                 <SettingScreen />
@@ -65,7 +54,7 @@ export const AppNavigator = () => {
                 <Tab.Navigator screenOptions={screenOptions}>
                     <Tab.Screen
                         name="Restaurants"
-                        component={RestaurantsScreen}
+                        component={RestaurantsNavigator}
                         options={{ headerShown: false }}
                     />
                     <Tab.Screen
