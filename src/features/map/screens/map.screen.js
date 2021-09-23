@@ -13,37 +13,45 @@ const Map = styled(MapView)`
 
 export const MapScreen = () => {
     const [latDelta, setLatDelta] = useState(0);
+
     const { location } = useContext(LocationContext);
     const { restaurants = [] } = useContext(RestaurantsContext);
-    const { viewport } = location;
+    const { lat, lng, viewport } = location;
 
     useEffect(() => {
         if (!viewport?.northeast || !viewport?.southwest) {
             console.log("Map.Screen : invalid location object!");
-            console.log("NIKMOK L 9AHBA ");
             console.log(`location : ${location}`);
             return;
         }
-        const northeastLat = viewport.northeast;
-        const southwestLat = viewport.southwest;
+        const northeastLat = viewport.northeast.lat;
+        const southwestLat = viewport.southwest.lat;
         setLatDelta(northeastLat - southwestLat);
     }, [location, viewport]);
 
     return (
         <SafeArea>
             <Search />
-            <Map></Map>
+            <Map
+                region={{
+                    latitude: lat,
+                    longitude: lng,
+                    latitudeDelta: latDelta,
+                    longitudeDelta: 0.02,
+                }}
+            >
+                {restaurants.map((restaurant) => {
+                    return (
+                        <MapView.Marker
+                            key={restaurant.name}
+                            coordinate={{
+                                latitude: restaurant.geometry.location.lat,
+                                longitude: restaurant.geometry.location.lng,
+                            }}
+                        ></MapView.Marker>
+                    );
+                })}
+            </Map>
         </SafeArea>
     );
-
-    // {
-    //     restaurants.map((restaurant) => {
-    //         return (
-    //             <MapView.Marker
-    //                 key={restaurant.name}
-    //                 coordinate={{ latitude: latDelta }}
-    //             ></MapView.Marker>
-    //         );
-    //     });
-    // }
 };
