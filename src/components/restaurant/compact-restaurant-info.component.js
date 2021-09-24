@@ -6,20 +6,21 @@ import { Text } from "../typography/text.component";
 
 const CompactImage = styled.Image`
     padding: 10px;
-    max-width: 120px;
+    max-width: 140px;
     align-items: center;
 `;
 
 const CompactWebView = styled(WebView)`
     border-radius: 10px;
-    width: 120px;
+    width: 160px;
     height: 100px;
 `;
 
 const Item = styled.View`
     padding: 10px;
-    max-width: 120px;
+    max-width: 160px;
     align-items: center;
+    text-align: center;
 `;
 
 const isAndroid = Platform.OS === "android";
@@ -30,7 +31,7 @@ export const CompactRestaurantInfo = ({ restaurant }) => {
         <TouchableOpacity>
             <Item>
                 <Image source={{ uri: restaurant.photos[0] }} />
-                <Text variant="caption" numberOfLines={3}>
+                <Text variant="centeredCaption" numberOfLines={3}>
                     {restaurant.name}
                 </Text>
             </Item>
