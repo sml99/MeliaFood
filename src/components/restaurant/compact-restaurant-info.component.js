@@ -6,6 +6,8 @@ import { Text } from "../typography/text.component";
 
 const CompactImage = styled.Image`
     padding: 10px;
+    min-width: 80px;
+    height: 80px;
     max-width: 140px;
     align-items: center;
 `;
@@ -25,8 +27,8 @@ const Item = styled.View`
 
 const isAndroid = Platform.OS === "android";
 
-export const CompactRestaurantInfo = ({ restaurant }) => {
-    const Image = isAndroid ? CompactWebView : CompactImage;
+export const CompactRestaurantInfo = ({ restaurant, isMap = true }) => {
+    const Image = isMap && isAndroid ? CompactWebView : CompactImage;
     return (
         <TouchableOpacity>
             <Item>
