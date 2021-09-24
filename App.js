@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "firebase/app";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import {
@@ -12,6 +13,26 @@ import { RestaurantContextProvider } from "./src/services/restaurants/restaurant
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { Navigation } from "./src/infrastructure/navigation/index";
+
+// Optionally import the services that you want to use
+import "firebase/auth";
+//import "firebase/database";
+//import "firebase/firestore";
+//import "firebase/functions";
+//import "firebase/storage";
+
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyD65epU7DgL-Att3FXhc0EqJi4E6k0DbF8",
+    authDomain: "mealia-food.firebaseapp.com",
+    projectId: "mealia-food",
+    storageBucket: "mealia-food.appspot.com",
+    messagingSenderId: "970175807157",
+    appId: "1:970175807157:web:22fb49fb11a65e29eb48fc",
+    measurementId: "G-62KPF22HMZ",
+};
+
+firebase.initializeApp(firebaseConfig);
 
 export default function App() {
     const [oswaldLoaded] = useOswald({
