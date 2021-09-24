@@ -7,7 +7,9 @@ import { RestaurantInfoCard } from "../components/restaurant-Info-card.component
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import { Search } from "../components/search.component";
+import { useEffect } from "react/cjs/react.development";
 
 const RestaurantsList = styled(FlatList).attrs({
     contentContainerStyle: {
@@ -25,6 +27,8 @@ const LoadingContainer = styled.View`
 
 export const RestaurantsScreen = ({ navigation }) => {
     const { restaurants, isLoading } = useContext(RestaurantsContext);
+    const { favourites, addToFavourites, removeFromFavourites } =
+        useContext(FavouritesContext);
 
     return (
         <SafeArea>
