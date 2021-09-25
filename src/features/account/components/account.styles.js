@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 import { colors } from "../../../infrastructure/theme/colors";
 
 export const AccountBackground = styled.ImageBackground.attrs({
@@ -30,4 +30,13 @@ export const AuthButton = styled(Button).attrs({
     color: colors.brand.primary,
 })`
     padding: ${(props) => props.theme.space[2]};
+`;
+
+export const AuthInput = styled(TextInput).attrs({
+    selectionColor: "tomato",
+})`
+    width: 250px;
+    height: 20px;
+    padding: 10px;
+    background-color: #eee;
 `;
