@@ -1,7 +1,7 @@
-import React from "react";
-import { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ActivityIndicator } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import {
     AccountBackground,
@@ -9,55 +9,66 @@ import {
     AccountCover,
     AuthButton,
     AuthInput,
+    Title,
 } from "../components/account.styles";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { onLogin } = useContext(AuthenticationContext);
-
-    const login = () => {
-        if (email.length > 4 && password.length >= 6) {
-            onLogin(email, password);
-        }
-    };
+    const { onLogin, isLoading, error } = useContext(AuthenticationContext);
 
     return (
         <AccountBackground>
             <AccountCover />
+            <Title>Melia Food</Title>
             <AccountContainer>
                 <AuthInput
+                    label="Email"
+                    value={email}
+                    textContentType="emailAddress"
                     keyboardType="email-address"
                     placeholder="Email"
-                    autoCompleteType="email"
                     returnKeyType="next"
                     onChangeText={(text) => setEmail(text)}
-                    onSubmitEditing={() => {
-                        this.secondTextInput.focus();
-                    }}
-                    blurOnSubmit={false}
                 />
                 <Spacer direction="bottom" size="large" />
                 <AuthInput
+                    label="Password"
+                    value={password}
                     placeholder="Password"
                     onChangeText={(text) => setPassword(text)}
-                    autoCompleteType="off"
-                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    secureTextEntry
                     returnKeyType="done"
-                    ref={(input) => {
-                        this.secondTextInput = input;
-                    }}
                 />
                 <Spacer direction="bottom" size="large" />
-                <AuthButton
-                    icon="lock-open-outline"
-                    mode="contained"
-                    onPress={login}
-                >
-                    Login
-                </AuthButton>
+                {error && (
+                    <Spacer direction="bottom" size="large">
+                        <Text variant="error">{error}</Text>
+                    </Spacer>
+                )}
+                {isLoading ? (
+                    <ActivityIndicator />
+                ) : (
+                    <AuthButton
+                        color
+                        icon="lock-open-outline"
+                        mode="contained"
+                        onPress={() => onLogin(email, password)}
+                    >
+                        Login
+                    </AuthButton>
+                )}
                 <Spacer direction="bottom" size="large" />
             </AccountContainer>
+            <Spacer direction="top" size="large">
+                <AuthButton
+                    mode="contained"
+                    onPress={() => navigation.goBack()}
+                >
+                    Back
+                </AuthButton>
+            </Spacer>
         </AccountBackground>
     );
 };

@@ -27,13 +27,7 @@ const LoadingContainer = styled.View`
 export const RestaurantsScreen = ({ navigation }) => {
     const [isToggled, setIsToggled] = useState(false);
     const { restaurants, isLoading } = useContext(RestaurantsContext);
-    const { favourites, addToFavourites, removeFromFavourites } =
-        useContext(FavouritesContext);
-
-    const onDetail = (item) =>
-        navigation.navigate("RestaurantDetail", {
-            restaurant: item,
-        });
+    const { favourites } = useContext(FavouritesContext);
 
     return (
         <SafeArea>
