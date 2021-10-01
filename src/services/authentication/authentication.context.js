@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useState, createContext } from "react";
 import firebase from "firebase";
 import { loginRequest } from "./authentication.service";
 
@@ -17,7 +17,6 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     const onLogin = (email, password) => {
         setIsLoading(true);
-        console.log(isLoading);
         loginRequest(email, password)
             .then((authenticatedUser) => {
                 setUser(authenticatedUser);

@@ -5,14 +5,27 @@ import {
     AccountContainer,
     AccountCover,
     AuthButton,
-    Title,
+    BannerContainer,
 } from "../components/account.styles";
+
+/* <AnimationWrapper>
+    <LottieView
+        key="animation"
+        loop
+        autoPlay
+        resizeMode="cover"
+        source={require("../../../../assets/delivery.json")}
+    />
+</AnimationWrapper>; */
 
 export const AccountScreen = ({ navigation }) => {
     return (
         <AccountBackground>
             <AccountCover />
-            <Title>Melia Food</Title>
+            <BannerContainer
+                source={require("../../../../assets/meliafood-light.png")}
+                resizeMode="cover"
+            />
             <AccountContainer>
                 <AuthButton
                     icon="lock-open-outline"

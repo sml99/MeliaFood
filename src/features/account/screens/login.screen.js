@@ -9,7 +9,7 @@ import {
     AccountCover,
     AuthButton,
     AuthInput,
-    Title,
+    LogoContainer,
 } from "../components/account.styles";
 
 export const LoginScreen = ({ navigation }) => {
@@ -20,7 +20,10 @@ export const LoginScreen = ({ navigation }) => {
     return (
         <AccountBackground>
             <AccountCover />
-            <Title>Melia Food</Title>
+            <LogoContainer
+                source={require("../../../../assets/logo-light.png")}
+                resizeMode="cover"
+            />
             <AccountContainer>
                 <AuthInput
                     label="Email"

@@ -9,7 +9,7 @@ import {
     AccountCover,
     AuthButton,
     AuthInput,
-    Title,
+    LogoContainer,
 } from "../components/account.styles";
 
 export const RegisterScreen = ({ navigation }) => {
@@ -21,6 +21,10 @@ export const RegisterScreen = ({ navigation }) => {
     return (
         <AccountBackground>
             <AccountCover />
+            <LogoContainer
+                source={require("../../../../assets/logo-light.png")}
+                resizeMode="cover"
+            />
             <AccountContainer>
                 <AuthInput
                     label="Email"

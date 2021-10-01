@@ -9,9 +9,9 @@ import { MapScreen } from "../../features/map/screens/map.screen";
 import { Button } from "react-native";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+import { RestaurantContextProvider } from "../../services/restaurants/restaurants.context";
+import { LocationContextProvider } from "../../services/location/location.context";
+import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 
 export const AppNavigator = () => {
     const { onLogout } = useContext(AuthenticationContext);
