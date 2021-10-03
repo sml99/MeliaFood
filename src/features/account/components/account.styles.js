@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ActivityIndicator } from "react-native-paper";
 import { Button, TextInput } from "react-native-paper";
 import { Text } from "../../../components/typography/text.component";
 
@@ -77,4 +78,10 @@ export const BannerContainer = styled.Image`
     height: 50%;
     position: absolute;
     top: -10px;
+`;
+
+export const LoadingIndicator = styled(ActivityIndicator).attrs({
+    size: "large",
+})`
+    padding: ${(props) => props.theme.space[4]};
 `;

@@ -6,32 +6,34 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children }) => {
     const [user, setUser] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
+    const [loginError, setLoginError] = useState();
+    const [registerError, setRegisterError] = useState();
 
     firebase.auth().onAuthStateChanged((usr) => {
         if (usr) {
             setUser(usr);
         }
-        setIsLoading(false);
+        // setIsLoading(false);
     });
 
     const onLogin = (email, password) => {
+        setLoginError(null);
         setIsLoading(true);
         loginRequest(email, password)
             .then((authenticatedUser) => {
                 setUser(authenticatedUser);
             })
             .catch((e) => {
-                setError(e.toString());
+                setLoginError(e.toString());
             })
             .finally(() => {
-                // setIsLoading(false);
+                setIsLoading(false);
             });
     };
 
     const onRegister = (email, password, repeatedPassword) => {
         if (password !== repeatedPassword) {
-            setError("Error: Password do not match");
+            setRegisterError("Error: Password do not match");
             return;
         }
         setIsLoading(true);
@@ -42,7 +44,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 setUser(authenticatedUser);
             })
             .catch((e) => {
-                setError(e.toString());
+                setRegisterError(e.toString());
             })
             .finally(() => {
                 setIsLoading(false);
@@ -60,7 +62,8 @@ export const AuthenticationContextProvider = ({ children }) => {
                 isAuthenticated: !!user,
                 user,
                 isLoading,
-                error,
+                loginError,
+                registerError,
                 onLogin,
                 onRegister,
                 onLogout,

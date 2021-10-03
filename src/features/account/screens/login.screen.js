@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { ActivityIndicator } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -10,16 +9,19 @@ import {
     AuthButton,
     AuthInput,
     LogoContainer,
+    LoadingIndicator,
 } from "../components/account.styles";
 
 export const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { onLogin, isLoading, error } = useContext(AuthenticationContext);
+    const { onLogin, isLoading, loginError } = useContext(
+        AuthenticationContext
+    );
 
     return (
         <AccountBackground>
-            <AccountCover />
+            <AccountCover color="tomato" size="small" />
             <LogoContainer
                 source={require("../../../../assets/logo-light.png")}
                 resizeMode="cover"
@@ -45,22 +47,28 @@ export const LoginScreen = ({ navigation }) => {
                     returnKeyType="done"
                 />
                 <Spacer direction="bottom" size="large" />
-                {error && (
-                    <Spacer direction="bottom" size="large">
-                        <Text variant="error">{error}</Text>
-                    </Spacer>
-                )}
+
                 {isLoading ? (
-                    <ActivityIndicator />
+                    <LoadingIndicator size="large" />
                 ) : (
-                    <AuthButton
-                        color
-                        icon="lock-open-outline"
-                        mode="contained"
-                        onPress={() => onLogin(email, password)}
-                    >
-                        Login
-                    </AuthButton>
+                    <>
+                        <Spacer direction="bottom" size="large">
+                            <Text variant="error">
+                                {loginError ? "Invalid email or password" : ""}
+                            </Text>
+                        </Spacer>
+
+                        <AuthButton
+                            color
+                            icon="lock-open-outline"
+                            mode="contained"
+                            onPress={() => {
+                                onLogin(email, password);
+                            }}
+                        >
+                            Login
+                        </AuthButton>
+                    </>
                 )}
                 <Spacer direction="bottom" size="large" />
             </AccountContainer>
