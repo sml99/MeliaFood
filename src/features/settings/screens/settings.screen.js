@@ -28,11 +28,13 @@ export const SettingsScreen = ({ navigation }) => {
                     icon="human"
                     backgroundColor="#2182BD"
                 />
+                <Spacer direction="top" size="large">
+                    <Text center variant="label">
+                        {user.email}
+                    </Text>
+                </Spacer>
             </AvatarContainer>
-            <Spacer direction="top" size="large" />
-            <Text center variant="label">
-                {user.email}
-            </Text>
+
             <List.Section>
                 <SettingsItem
                     title="Favourites"
