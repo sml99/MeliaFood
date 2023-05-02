@@ -21,13 +21,7 @@ import "firebase/auth";
 
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyD65epU7DgL-Att3FXhc0EqJi4E6k0DbF8",
-    authDomain: "mealia-food.firebaseapp.com",
-    projectId: "mealia-food",
-    storageBucket: "mealia-food.appspot.com",
-    messagingSenderId: "970175807157",
-    appId: "1:970175807157:web:22fb49fb11a65e29eb48fc",
-    measurementId: "G-62KPF22HMZ",
+
 };
 
 if (!firebase.apps.length) {
